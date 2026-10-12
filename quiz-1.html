@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are You Ready to Quit Smoking? | Mind Medicine Hypnosis</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a3c34 0%, #0d241f 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    max-width: 560px;
+    width: 100%;
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #2d6a4f, #1a3c34);
+    color: #fff;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.5rem; margin-bottom: 8px; }
+  .header p { font-size: 0.95rem; opacity: 0.9; }
+  .progress-bar { height: 6px; background: #e0e0e0; }
+  .progress-fill { height: 100%; background: #2d6a4f; width: 0%; transition: width 0.3s ease; }
+  .quiz-body { padding: 28px 24px; }
+  .question { display: none; }
+  .question.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .question h2 { font-size: 1.15rem; margin-bottom: 8px; color: #1a3c34; }
+  .question .subtext { font-size: 0.9rem; color: #666; margin-bottom: 18px; }
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .option-btn {
+    padding: 16px; border: 2px solid #ddd; border-radius: 10px;
+    background: #fafafa; font-size: 1rem; text-align: left; cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .option-btn:hover { border-color: #2d6a4f; background: #eef6f1; }
+  .option-btn.selected { border-color: #2d6a4f; background: #2d6a4f; color: #fff; }
+  .nav-buttons { display: flex; justify-content: space-between; margin-top: 24px; }
+  .nav-btn { padding: 12px 24px; border-radius: 8px; border: none; font-size: 1rem; cursor: pointer; font-weight: 600; }
+  .btn-back { background: #eee; color: #333; }
+  .btn-next { background: #2d6a4f; color: #fff; margin-left: auto; }
+  .btn-next:disabled { background: #ccc; cursor: not-allowed; }
+  .result { display: none; text-align: center; }
+  .result.active { display: block; animation: fadeIn 0.4s ease; }
+  .result h2 { color: #1a3c34; font-size: 1.4rem; margin-bottom: 14px; }
+  .result p { font-size: 1.02rem; line-height: 1.6; margin-bottom: 22px; color: #333; }
+  .result-cta {
+    display: inline-block; background: #2d6a4f; color: #fff; text-decoration: none;
+    padding: 16px 28px; border-radius: 10px; font-size: 1.05rem; font-weight: 600; margin-bottom: 14px;
+  }
+  .result-cta.secondary { background: #fff; color: #2d6a4f; border: 2px solid #2d6a4f; }
+  .cta-row { display: flex; flex-direction: column; gap: 12px; }
+  .start-screen { text-align: center; }
+  .start-screen p { font-size: 1.02rem; line-height: 1.6; margin-bottom: 22px; color: #333; }
+  .start-btn {
+    background: #2d6a4f; color: #fff; border: none; padding: 16px 32px;
+    border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+  }
+  .footer-note { text-align: center; padding: 16px; font-size: 0.82rem; color: #888; }
+  .q-count { font-size: 0.8rem; color: #999; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Ready to Quit Smoking?</h1>
+    <p>Take this quick quiz to find your best next step</p>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="quiz-body">
+
+    <div class="question active" id="start-screen">
+      <div class="start-screen">
+        <h2 style="color:#1a3c34; margin-bottom:14px;">A few quick questions</h2>
+        <p>Answer honestly, there's no wrong answer. At the end, you'll get a free recommendation based on where you are right now.</p>
+        <button class="start-btn" onclick="startQuiz()">Start the Quiz</button>
+      </div>
+    </div>
+
+    <div class="question" id="q1">
+      <div class="q-count">Question 1 of 8</div>
+      <h2>How long have you been smoking?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,1)">Less than 5 years</button>
+        <button class="option-btn" onclick="selectOption(this,1)">5 to 20 years</button>
+        <button class="option-btn" onclick="selectOption(this,1)">More than 20 years</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(1)">Back</button>
+        <button class="nav-btn btn-next" id="next1" onclick="nextQuestion(1)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q2">
+      <div class="q-count">Question 2 of 8</div>
+      <h2>Have you tried to quit before?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,2)">No, this would be my first real attempt</button>
+        <button class="option-btn" onclick="selectOption(this,2)">Yes, once or twice</button>
+        <button class="option-btn" onclick="selectOption(this,2)">Yes, many times</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(2)">Back</button>
+        <button class="nav-btn btn-next" id="next2" onclick="nextQuestion(2)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q3">
+      <div class="q-count">Question 3 of 8</div>
+      <h2>What usually gets in the way?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,3)">Stress and habit more than the nicotine itself</button>
+        <button class="option-btn" onclick="selectOption(this,3)">Cravings that feel too strong to fight</button>
+        <button class="option-btn" onclick="selectOption(this,3)">I'm not sure, I just never follow through</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(3)">Back</button>
+        <button class="nav-btn btn-next" id="next3" onclick="nextQuestion(3)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q4">
+      <div class="q-count">Question 4 of 8</div>
+      <h2>Did you know hypnosis is one of the most effective, well-studied ways to quit smoking?</h2>
+      <div class="subtext">How does that sit with you?</div>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,4)">I didn't know that, I'm intrigued</button>
+        <button class="option-btn" onclick="selectOption(this,4)">I've heard that, makes sense</button>
+        <button class="option-btn" onclick="selectOption(this,4)">I'm still a little nervous about it</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(4)">Back</button>
+        <button class="nav-btn btn-next" id="next4" onclick="nextQuestion(4)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q5">
+      <div class="q-count">Question 5 of 8</div>
+      <h2>Roughly how many cigarettes do you smoke a day?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,5)">Less than 10</button>
+        <button class="option-btn" onclick="selectOption(this,5)">10 to 20</button>
+        <button class="option-btn" onclick="selectOption(this,5)">More than a pack a day</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(5)">Back</button>
+        <button class="nav-btn btn-next" id="next5" onclick="nextQuestion(5)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q6">
+      <div class="q-count">Question 6 of 8</div>
+      <h2>What's your biggest reason for wanting to quit?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,6)">My health</button>
+        <button class="option-btn" onclick="selectOption(this,6)">My family</button>
+        <button class="option-btn" onclick="selectOption(this,6)">The money I'd save</button>
+        <button class="option-btn" onclick="selectOption(this,6)">Just ready for a change</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(6)">Back</button>
+        <button class="nav-btn btn-next" id="next6" onclick="nextQuestion(6)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q7">
+      <div class="q-count">Question 7 of 8</div>
+      <h2>What time of day is hardest for you?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,7)">First thing in the morning</button>
+        <button class="option-btn" onclick="selectOption(this,7)">During stressful moments</button>
+        <button class="option-btn" onclick="selectOption(this,7)">After meals</button>
+        <button class="option-btn" onclick="selectOption(this,7)">Evenings, winding down</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(7)">Back</button>
+        <button class="nav-btn btn-next" id="next7" onclick="nextQuestion(7)" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="question" id="q8">
+      <div class="q-count">Question 8 of 8</div>
+      <h2>How ready do you feel right now?</h2>
+      <div class="options">
+        <button class="option-btn" onclick="selectOption(this,8)">Just curious, exploring my options</button>
+        <button class="option-btn" onclick="selectOption(this,8)">Pretty ready, I want a plan</button>
+        <button class="option-btn" onclick="selectOption(this,8)">Very ready, I want to talk to someone now</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn btn-back" onclick="prevQuestion(8)">Back</button>
+        <button class="nav-btn btn-next" id="next8" onclick="showResult()" disabled>See My Result</button>
+      </div>
+    </div>
+
+    <div class="result" id="result-A">
+      <h2>Try the Free Audio Session First</h2>
+      <p>You're exploring, and that's a great place to start. The best next step is to actually experience hypnosis for yourself. Listen to Ron's free 10-minute quit-smoking hypnosis session and feel what it's like firsthand, no pressure, no commitment.</p>
+      <div class="cta-row">
+        <a href="https://payhip.com/b/EVwKx" class="result-cta">Listen to the Free 10-Minute Session</a>
+        <a href="tel:5702121482" class="result-cta secondary">Or Call/Text Ron: (570) 212-1482</a>
+      </div>
+    </div>
+
+    <div class="result" id="result-B">
+      <h2>Grab the Free Quit Smoking Workbook</h2>
+      <p>You want a real plan, not just motivation. Ron's free workbook walks you through the exact steps to prepare your mind and break the habit for good, and pairs perfectly with the free audio session too.</p>
+      <div class="cta-row">
+        <a href="https://payhip.com/b/GHWhI" class="result-cta">Get the Free Workbook</a>
+        <a href="tel:5702121482" class="result-cta secondary">Or Call/Text Ron: (570) 212-1482</a>
+      </div>
+    </div>
+
+    <div class="result" id="result-C">
+      <h2>You're Ready. Let's Talk.</h2>
+      <p>When you're this ready, the fastest path is a real conversation. Call or text Ron directly to book your session, he works with clients nationally over Zoom, so wherever you are, you can get started right away.</p>
+      <div class="cta-row">
+        <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
+        <a href="https://payhip.com/b/EVwKx" class="result-cta secondary">Try the Free Audio Session First</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-note">Mind Medicine Hypnosis &middot; Ron Dean, Certified Hypnotherapist</div>
+</div>
+
+<script>
+let answers = {};
+let currentQ = 0;
+const totalQ = 8;
+
+function startQuiz() {
+  document.getElementById('start-screen').classList.remove('active');
+  document.getElementById('q1').classList.add('active');
+  currentQ = 1;
+  updateProgress();
+}
+
+function selectOption(btn, qNum) {
+  const options = btn.parentElement.querySelectorAll('.option-btn');
+  options.forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[qNum] = btn.textContent;
+  document.getElementById('next' + qNum).disabled = false;
+}
+
+function nextQuestion(qNum) {
+  document.getElementById('q' + qNum).classList.remove('active');
+  document.getElementById('q' + (qNum + 1)).classList.add('active');
+  currentQ = qNum + 1;
+  updateProgress();
+}
+
+function prevQuestion(qNum) {
+  document.getElementById('q' + qNum).classList.remove('active');
+  if (qNum === 1) {
+    document.getElementById('start-screen').classList.add('active');
+    currentQ = 0;
+  } else {
+    document.getElementById('q' + (qNum - 1)).classList.add('active');
+    currentQ = qNum - 1;
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = (currentQ / (totalQ + 1)) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function showResult() {
+  document.getElementById('q8').classList.remove('active');
+  currentQ = 9;
+  updateProgress();
+
+  const readiness = answers[8];
+  const hypnosisFeel = answers[4];
+  let resultId = 'result-A';
+
+  if (readiness && readiness.indexOf('Very ready') === 0) {
+    resultId = 'result-C';
+  } else if (readiness && readiness.indexOf('Pretty ready') === 0) {
+    resultId = 'result-B';
+  } else {
+    resultId = 'result-A';
+  }
+
+  document.getElementById(resultId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
