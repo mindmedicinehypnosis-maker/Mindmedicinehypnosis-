@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Monthly Tips | Mind Medicine Hypnosis</title>
+<meta name="description" content="A short monthly email from Ron Dean, certified hypnotherapist: one practical tip, one free audio or offer, and no spam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F6F5;--surface:#FFFFFF;--ink:#13282B;--muted:#4A6064;--teal:#1B6B67;--teal-dark:#124C49;--sage:#DCE9E5;--amber:#B97A1E;--line:#CBDAD6;
+--serif:"Newsreader",Georgia,serif;--sans:"Figtree",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1C1E;--surface:#16292C;--ink:#E8F0EE;--muted:#9DB4B1;--teal:#5FC2BA;--teal-dark:#8ED8D1;--sage:#1C3336;--amber:#E0A44A;--line:#29423F}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.wrap{max-width:560px;margin:0 auto;padding:36px 18px 48px}
+.brand{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--muted);margin-bottom:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px 22px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,7vw,2.4rem);line-height:1.15;margin:0 0 12px}
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+ul{margin:0 0 18px;padding-left:20px}li{margin-bottom:6px}
+label{display:block;font-weight:600;font-size:.95rem;margin:14px 0 6px}
+input[type=text],input[type=email]{width:100%;padding:14px;border:2px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;background:var(--bg);color:var(--ink)}
+input:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+button{width:100%;margin-top:18px;padding:15px;border-radius:999px;border:2px solid var(--teal);background:var(--teal);color:#fff;font-size:1.05rem;font-weight:600;font-family:inherit;cursor:pointer}
+@media (prefers-color-scheme:dark){button{color:#0E1C1E}}
+button:disabled{opacity:.6;cursor:default}
+.note{font-size:.88rem;color:var(--muted);margin-top:14px}
+.msg{margin-top:16px;font-weight:600}
+.ok{color:var(--teal-dark)}.err{color:#B3261E}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.links{margin-top:22px;font-size:.95rem}
+a{color:var(--teal-dark)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Mind Medicine Hypnosis</div>
+  <div class="card">
+    <h1>A short monthly email from Ron</h1>
+    <p class="muted">Once a month, nothing more. Written by a certified hypnotherapist, not a marketing team.</p>
+    <ul>
+      <li>One practical tip you can use that week</li>
+      <li>Free audios and new offers, before anyone else</li>
+      <li>Help with quitting smoking, stress, and sleep</li>
+    </ul>
+    <form id="f" novalidate>
+      <label for="n">Your first name</label>
+      <input id="n" type="text" autocomplete="given-name" placeholder="First name">
+      <label for="e">Your email</label>
+      <input id="e" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+      <div class="hp"><label>Leave this empty <input id="bot" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <button id="b" type="submit">Yes, sign me up</button>
+      <div id="m" class="msg" role="status" aria-live="polite"></div>
+    </form>
+    <p class="note">Your email is only used for this newsletter. It is never sold or shared. To stop, just reply "unsubscribe" to any email and I will remove you.</p>
+  </div>
+  <p class="links">Thinking about quitting smoking? <a href="quiz-leads.html">Take the free 2-minute quiz</a> &middot; <a href="index.html">Back to home</a></p>
+</div>
+<script>
+const ACCESS_KEY = "a46d16c7-5cd4-47f1-b742-aa3f0f418225";
+const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');
+f.addEventListener('submit',async function(ev){
+  ev.preventDefault();
+  m.className='msg';m.textContent='';
+  if(document.getElementById('bot').value){return;}
+  const name=document.getElementById('n').value.trim();
+  const email=document.getElementById('e').value.trim();
+  if(!name){m.className='msg err';m.textContent='Please enter your first name.';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){m.className='msg err';m.textContent='Please enter a valid email address.';return;}
+  b.disabled=true;b.textContent='Sending...';
+  try{
+    const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:ACCESS_KEY,subject:'New newsletter signup: '+name,from_name:'Mind Medicine Hypnosis website',Name:name,Email:email,Source:'Newsletter page'})});
+    const j=await r.json();
+    if(j.success){f.innerHTML='<p class="msg ok">Thank you, '+name.replace(/[<>&"]/g,'')+'. You are on the list. Watch for Ron\'s first email.</p>';}
+    else{throw new Error('fail');}
+  }catch(x){
+    b.disabled=false;b.textContent='Yes, sign me up';
+    m.className='msg err';m.textContent='Sorry, that did not go through. Please try again, or call or text Ron at (570) 212-1482.';
+  }
+});
+</script>
+</body>
+</html>
