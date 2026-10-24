@@ -96,6 +96,7 @@
   <div class="header">
     <h1>Ready to Quit Smoking?</h1>
     <p>Take this quick quiz to find your best next step</p>
+    <p style="font-size:0.9rem;opacity:0.9;margin-top:6px;">Live video sessions, from anywhere in the US</p>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
@@ -229,15 +230,17 @@
       <p>You're exploring, and that's a great place to start. The best next step is to actually experience hypnosis for yourself. Listen to Ron's free 10-minute quit-smoking hypnosis session and feel what it's like firsthand, no pressure, no commitment.</p>
       <div class="cta-row">
         <a href="https://payhip.com/b/EVwKx" class="result-cta">Listen to the Free 10-Minute Session</a>
+        <a href="https://payhip.com/b/dmLAQ" class="result-cta secondary">Also Get the Free Easy Quit Starter Guide</a>
         <a href="tel:5702121482" class="result-cta secondary">Or Call/Text Ron: (570) 212-1482</a>
       </div>
     </div>
 
     <div class="result" id="result-B">
-      <h2>Grab the Free Quit Smoking Workbook</h2>
-      <p>You want a real plan, not just motivation. Ron's free workbook walks you through the exact steps to prepare your mind and break the habit for good, and pairs perfectly with the free audio session too.</p>
+      <h2>Get the Free Easy Quit Starter Guide</h2>
+      <p>You want a real plan, not just motivation. Ron's free Easy Quit Starter Guide gives you the first three sessions of his program: why you want to quit, how your habit works, and how to ride out cravings. It pairs well with the free audio session too.</p>
       <div class="cta-row">
-        <a href="https://payhip.com/b/GHWhI" class="result-cta">Get the Free Workbook</a>
+        <a href="https://payhip.com/b/dmLAQ" class="result-cta">Get the Free Starter Guide</a>
+        <a href="https://payhip.com/b/YZKdP" class="result-cta secondary">See the Full Easy Quit Program ($47)</a>
         <a href="tel:5702121482" class="result-cta secondary">Or Call/Text Ron: (570) 212-1482</a>
       </div>
     </div>
@@ -248,17 +251,19 @@
       <div class="cta-row">
         <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
         <a href="https://payhip.com/b/EVwKx" class="result-cta secondary">Try the Free Audio Session First</a>
+        <a href="https://payhip.com/b/YZKdP" class="result-cta secondary">Or Start the Easy Quit Program ($47)</a>
       </div>
     </div>
 
 
     <div class="lead-box" id="leadBox">
       <h3>Want Ron to reach out?</h3>
-      <p class="sub">Leave your name and number and Ron will contact you personally. No pressure, and the first conversation is free. Sessions are available by video from anywhere in the US.</p>
+      <p class="sub">Leave your name and number and Ron will contact you personally. No pressure, and the first conversation is free. Sessions are held by video, so you can be anywhere in the US.</p>
       <form id="leadForm" novalidate>
         <input type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" required>
         <input type="tel" id="leadPhone" placeholder="Your phone number" autocomplete="tel" required>
         <input type="email" id="leadEmail" placeholder="Your email (optional)" autocomplete="email">
+        <input type="text" id="leadState" placeholder="Your state (optional)" autocomplete="address-level1">
         <input type="text" class="hp" id="leadBot" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit" id="leadBtn">Yes, please contact me</button>
         <div class="lead-msg" id="leadMsg" role="status"></div>
@@ -331,7 +336,7 @@ function showResult() {
   }
 
   document.getElementById(resultId).classList.add('active');
-  shownResult = resultId === 'result-C' ? 'Ready now (call)' : (resultId === 'result-B' ? 'Wants a plan (workbook)' : 'Curious (free audio)');
+  shownResult = resultId === 'result-C' ? 'Ready now (call)' : (resultId === 'result-B' ? 'Wants a plan (starter guide)' : 'Curious (free audio)');
   document.getElementById('leadBox').classList.add('show');
 }
 
@@ -355,6 +360,7 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
   const name = document.getElementById('leadName').value.trim();
   const phone = document.getElementById('leadPhone').value.trim();
   const email = document.getElementById('leadEmail').value.trim();
+  const state = document.getElementById('leadState').value.trim();
   msg.className = 'lead-msg';
   if (document.getElementById('leadBot').value) { return; }
   if (!name || phone.replace(/\D/g, '').length < 7) {
@@ -369,6 +375,7 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
     Name: name,
     Phone: phone,
     Email: email || '(not given)',
+    State: state || '(not given)',
     Result_shown: shownResult
   };
   for (const k in QUESTIONS) { data[QUESTIONS[k]] = answers[k] || ''; }
