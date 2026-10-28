@@ -330,7 +330,7 @@
       <h4>Good to know</h4>
       <p>Even secure people have stressful seasons. If something specific is weighing on you, such as stress, a hard relationship or a habit you want to change, Ron is happy to talk it through.</p>
       <div class="cta-row">
-        <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta">Call or Text Ron: (516) 262-3614</a>
       </div>
     </div>
 
@@ -345,7 +345,7 @@
       <h4>Good to know</h4>
       <p>This is a learned pattern, not a flaw. Many people find that with practice, calming tools, and a better understanding of their triggers, they feel steadier in their relationships.</p>
       <div class="cta-row">
-        <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta">Call or Text Ron: (516) 262-3614</a>
       </div>
     </div>
 
@@ -360,7 +360,7 @@
       <h4>Good to know</h4>
       <p>This is a learned pattern, often built to protect you. Many people learn to stay close without feeling trapped, one small step at a time.</p>
       <div class="cta-row">
-        <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta">Call or Text Ron: (516) 262-3614</a>
       </div>
     </div>
 
@@ -375,7 +375,7 @@
       <h4>Good to know</h4>
       <p>This pattern is common, especially after painful experiences. It is not a diagnosis, and it can change. Many people find that learning to calm their body and mind helps them feel safer in relationships. A good therapist can also help.</p>
       <div class="cta-row">
-        <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta">Call or Text Ron: (516) 262-3614</a>
       </div>
     </div>
 
@@ -488,13 +488,13 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
     const j = await r.json();
     if (j.success) {
       msg.className = 'lead-msg ok';
-      msg.textContent = 'Thank you, ' + name + '. Ron will be in touch soon. You can also call or text him at (570) 212-1482.';
+      msg.textContent = 'Thank you, ' + name + '. Ron will be in touch soon. You can also call or text him at (516) 262-3614.';
       document.getElementById('leadForm').querySelectorAll('input').forEach(function(i){ i.disabled = true; });
       btn.style.display = 'none';
     } else { throw new Error('fail'); }
   } catch (err) {
     msg.className = 'lead-msg err';
-    msg.textContent = 'Sorry, that did not go through. Please call or text Ron at (570) 212-1482.';
+    msg.textContent = 'Sorry, that did not go through. Please call or text Ron at (516) 262-3614.';
     btn.disabled = false; btn.textContent = 'Yes, please contact me';
   }
 });

@@ -231,7 +231,7 @@
       <div class="cta-row">
         <a href="https://payhip.com/b/EVwKx" class="result-cta">Listen to the Free 10-Minute Session</a>
         <a href="https://payhip.com/b/dmLAQ" class="result-cta secondary">Also Get the Free Easy Quit Starter Guide</a>
-        <a href="tel:5702121482" class="result-cta secondary">Or Call/Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta secondary">Or Call/Text Ron: (516) 262-3614</a>
       </div>
     </div>
 
@@ -241,7 +241,7 @@
       <div class="cta-row">
         <a href="https://payhip.com/b/dmLAQ" class="result-cta">Get the Free Starter Guide</a>
         <a href="https://payhip.com/b/YZKdP" class="result-cta secondary">See the Full Easy Quit Program ($47)</a>
-        <a href="tel:5702121482" class="result-cta secondary">Or Call/Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta secondary">Or Call/Text Ron: (516) 262-3614</a>
       </div>
     </div>
 
@@ -249,7 +249,7 @@
       <h2>You're Ready. Let's Talk.</h2>
       <p>When you're this ready, the fastest path is a real conversation. Call or text Ron directly to book your session, he works with clients nationally over Zoom, so wherever you are, you can get started right away.</p>
       <div class="cta-row">
-        <a href="tel:5702121482" class="result-cta">Call or Text Ron: (570) 212-1482</a>
+        <a href="tel:5162623614" class="result-cta">Call or Text Ron: (516) 262-3614</a>
         <a href="https://payhip.com/b/EVwKx" class="result-cta secondary">Try the Free Audio Session First</a>
         <a href="https://payhip.com/b/YZKdP" class="result-cta secondary">Or Start the Easy Quit Program ($47)</a>
       </div>
@@ -390,13 +390,13 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
     const j = await r.json();
     if (j.success) {
       msg.className = 'lead-msg ok';
-      msg.textContent = 'Thank you, ' + name + '. Ron will be in touch soon. You can also call or text him at (570) 212-1482.';
+      msg.textContent = 'Thank you, ' + name + '. Ron will be in touch soon. You can also call or text him at (516) 262-3614.';
       document.getElementById('leadForm').querySelectorAll('input').forEach(function(i){ i.disabled = true; });
       btn.style.display = 'none';
     } else { throw new Error('fail'); }
   } catch (err) {
     msg.className = 'lead-msg err';
-    msg.textContent = 'Sorry, that did not go through. Please call or text Ron at (570) 212-1482.';
+    msg.textContent = 'Sorry, that did not go through. Please call or text Ron at (516) 262-3614.';
     btn.disabled = false;
     btn.textContent = 'Yes, please contact me';
   }
